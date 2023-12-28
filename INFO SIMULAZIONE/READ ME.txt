@@ -1,0 +1,60 @@
+Per realizzare la simulazione del solo End Effector è stato creato un file URDF a partire dal modello CAD sviluppato in Fusion360 mediante l'add-in 
+"URDF_Exporter" (il file "Pinza speciale", che contiene l'EE definitivo, è stato utilizzato per realizzare "Pinza speciale (URDF version)" il quale
+contiene la struttura necessaria al fine di creare correttamente l'URDF). E' stato poi creato un ros_package all'interno del quale è stato importato 
+l'URDF dell'EE (il quale è stato dotato dei corretti limiti di giunto grazie al comando "limit" e, grazie ad un launch file che permette di spawnare 
+il modello del robot nell'ambiente Rviz e al joint_state_publisher_gui, è possibile effettuare una prima simulazione dei movimenti principali dell'
+End Effector utilizzando gli slider, relativi ad ogni giunto, che appaiono a schermo.
+
+Lo step successivo è stato incorporare l'URDF di un set di tre tegole fissate al modulo in torlon mediante i relativi locking bush (per questo è 
+stato utilizzato l'URDF_tegole.xacro che ho allegato). Al fine spawnare sia l'end effector che il set di tegole, il file Pinza.xacro è stato definito  
+come macro e linkato all'URDF_tegole.xacro mediante un giunto prismatico che consente di visualizzare la fase di approccio alla tegola in modo da verificare
+il rispetto delle tolleranze.
+
+Per quanto riguarda la simulazione del task, che quindi necessita dell'utilizzo del manipolatore completo, è stato utilizzato il file 
+"ARM CAD NEW KIN - 150mm def".
+Al fine di creare la struttura necessaria alla corretta creazione dell'URDF, ne è stata creata una copia "ARM CAD NEW KIN - 150mm def(URDF)".
+Per simulare la sostituzione di una certa tegola è stato utilizzato il "MoveIt Motion Planner Framework" e il pacchetto MoveIt Task Constructor 
+che permette di modellare il contatto tra il robot e la tegola che esso deve afferrare.
+
+
+
+
+Percorsi files:
+
+Nefertari->Robotic Arm->Design->Pinza->Pinza speciale
+Nefertari->Robotic Arm->Design->Pinza->Pinza speciale (URDF version)
+Nefertari->Robotic Arm->Design->ARM CAD NEW KIN - 150mm def
+Nefertari->Robotic Arm->Design->Pinza->EndEffector_URDF->RFX2M_URDF->ARM CAD NEW KIN - 150mm def(URDF)
+FILE PER URDF->URDF_tegole_description->urdf->URDF_tegole.xacro
+FILE PER URDF->Pinza_description->urdf->Pinza.xacro
+
+
+
+Links:
+
+https://github.com/ros-planning/moveit_task_constructor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
